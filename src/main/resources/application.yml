@@ -1,1 +1,16 @@
 name: Money Transfer Service
+
+logging:
+  level: INFO
+  appenders:
+    - type: console
+      threshold: ALL
+      timeZone: UTC
+      target: stdout
+    - type: file
+      currentLogFilename: logs/money-transfer-service.log
+      threshold: ALL
+      archive: true
+      archivedLogFilenamePattern: log/money-transfer-service-%d.log
+      archivedFileCount: 5
+      timeZone: UTC
