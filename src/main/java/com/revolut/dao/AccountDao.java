@@ -12,11 +12,16 @@ public class AccountDao extends AbstractDAO<Account> {
         super(factory);
     }
 
-    public void create(Account sample) {
-        persist(sample);
-    }
 
     public List<Account> findAll() {
         return list(currentSession().createQuery("from Account"));
+    }
+
+    public Account findById(Long accountId) {
+        return get(accountId);
+    }
+
+    public Account saveOrUpdate(Account account) {
+        return persist(account);
     }
 }

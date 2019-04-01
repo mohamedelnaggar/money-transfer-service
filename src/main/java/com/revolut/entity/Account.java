@@ -1,11 +1,7 @@
 package com.revolut.entity;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -13,19 +9,21 @@ import java.util.Objects;
 public class Account {
 
     @Id
-    @Column
-    @NotNull
-    private Integer id;
+    @GeneratedValue
+    @Column(name = "id")
+    private Long id;
 
-    @Column
-    @NotNull
-    private Double balance = 0.0;
+    @Column(name = "balance")
+    private Double balance;
 
-    public Integer getId() {
+    @Column(name = "currency_code")
+    private String currencyCode;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -37,18 +35,25 @@ public class Account {
         this.balance = balance;
     }
 
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return Objects.equals(id, account.id) &&
-                Objects.equals(balance, account.balance);
+        return Objects.equals(id, account.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, balance);
+        return Objects.hash(id);
     }
 
     @Override
@@ -56,6 +61,7 @@ public class Account {
         return "Account{" +
                 "id=" + id +
                 ", balance=" + balance +
+                ", currencyCode='" + currencyCode + '\'' +
                 '}';
     }
 }

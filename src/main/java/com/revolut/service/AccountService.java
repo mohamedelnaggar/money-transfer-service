@@ -14,8 +14,16 @@ public class AccountService {
         this.accountDao = accountDao;
     }
 
-    public List<Account> findAll(){
+    public List<Account> getAllAccounts(){
         return accountDao.findAll();
+    }
+
+    public Account getAccountDetails(Long accountId){
+        return accountDao.findById(accountId);
+    }
+
+    public Account saveOrUpdate(Account account){
+        return accountDao.saveOrUpdate(account);
     }
 
 }
