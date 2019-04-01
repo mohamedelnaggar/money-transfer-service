@@ -1,5 +1,6 @@
 target/
 logs/
+h2/
 
 ### STS ###
 .apt_generated

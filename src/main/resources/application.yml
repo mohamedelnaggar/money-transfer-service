@@ -11,6 +11,22 @@ logging:
       currentLogFilename: logs/money-transfer-service.log
       threshold: ALL
       archive: true
-      archivedLogFilenamePattern: log/money-transfer-service-%d.log
+      archivedLogFilenamePattern: logs/money-transfer-service-%d.log
       archivedFileCount: 5
       timeZone: UTC
+
+database:
+  driverClass: org.h2.Driver
+  url: jdbc:h2:./h2/money_transfer
+  maxWaitForConnection: 1s
+  minSize: 8
+  maxSize: 32
+  checkConnectionWhileIdle: false
+  evictionInterval: 10s
+  minIdleTime: 1 minute
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.H2Dialect
+    hibernate.show_sql: true
+    hibernate.generate_statistics: false
+    hibernate.hbm2ddl.auto: create-drop
